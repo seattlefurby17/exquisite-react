@@ -1,9 +1,57 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import './PlayerSubmissionForm.css';
 
-const PlayerSubmissionForm = () => {
+const PlayerSubmissionForm = (props) => {
+  const [poems, updatePoems] = useState({
+    submission1: '',
+    submission2: '',
+    submission3: '',
+    submission4: '',
+    submission5: '',
+    submission6: '',
+
+    // adjective: '',
+    // noun: '',
+    // adverb: '',
+    // verb: '',
+    // adjective: '',
+    // noun: ''
+  });
+
+  //event handlers
+  const onInputChange = (event) => {
+  
+  const newPlayerSubmission = {
+    ...poems
+  };
+
+  const {fieldName, fieldValue} =  event.target
+
+  // This sets newformFields to the old value of the form state
+  // and then updates the one field that changed.
+  newPlayerSubmission[fieldName] = fieldValue; // updated the value using the hash key
+  updatePoems(newPlayerSubmission);  // updated the form with new values
+  }
+
+  //event listener
+  const onFormPoemSubmission = (event) => {
+    // prevent the form from being submitted
+    event.preventDefault();
+    // print user data
+    console.log(poems);
+    // clear the submission
+    updatePoems({
+      submission1: '',
+      submission2: '',
+      submission3: '',
+      submission4: '',
+      submission5: '',
+      submission6: '',
+    });
+  };
+
+
   return (
     <div className="PlayerSubmissionForm">
       <h3>Player Submission Form for Player #{  }</h3>
@@ -17,8 +65,9 @@ const PlayerSubmissionForm = () => {
           }
           <input
             placeholder="hm..."
-            type="text" />
-
+            type="text" 
+            onChange={ onInputChange }
+            />
         </div>
 
         <div className="PlayerSubmissionForm__submit">
