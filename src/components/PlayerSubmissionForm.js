@@ -3,27 +3,21 @@ import PropTypes from 'prop-types';
 import './PlayerSubmissionForm.css';
 
 const PlayerSubmissionForm = (props) => {
-  const [poems, updatePoems] = useState({
-    submission1: '',
-    submission2: '',
-    submission3: '',
-    submission4: '',
-    submission5: '',
-    submission6: '',
+  const setInitialState = () => {
+    const initialStateValue = {};
+    props.fields.forEach((field) => {
+      if (field.key) initialStateValue[field.key] = '';
+    })
+    return initialStateValue;
+  }
 
-    // adjective: '',
-    // noun: '',
-    // adverb: '',
-    // verb: '',
-    // adjective: '',
-    // noun: ''
-  });
+  const [words, updateWords] = useState(setInitialState());
 
   //event handlers
   const onInputChange = (event) => {
   
   const newPlayerSubmission = {
-    ...poems
+    ...words
   };
 
   const {fieldName, fieldValue} =  event.target
@@ -31,24 +25,19 @@ const PlayerSubmissionForm = (props) => {
   // This sets newformFields to the old value of the form state
   // and then updates the one field that changed.
   newPlayerSubmission[fieldName] = fieldValue; // updated the value using the hash key
-  updatePoems(newPlayerSubmission);  // updated the form with new values
+  updateWords(newPlayerSubmission);  // updated the form with new values
   }
 
   //event listener
-  const onFormPoemSubmission = (event) => {
+  const onFormWordSubmission = (event) => {
     // prevent the form from being submitted
     event.preventDefault();
     // print user data
-    console.log(poems);
+    console.log(words);
+    // pass data to App
+    props.sendSubmission(words)
     // clear the submission
-    updatePoems({
-      submission1: '',
-      submission2: '',
-      submission3: '',
-      submission4: '',
-      submission5: '',
-      submission6: '',
-    });
+    updateWords(setInitialState());
   };
 
 
