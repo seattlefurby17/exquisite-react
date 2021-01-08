@@ -11,13 +11,22 @@ const Game = () => {
     } else {
       return field;
     }
-  }).join(' ');
+  }).join(' '); //this is a string
+
+  const [lines, setLines] = useState([]); //equivalent of constance variable 
+
+  const getPlayerSubmission = (words) => {
+    
+    setLines()
+  }
 
   return (
     <div className="Game">
       <h2>Game</h2>
 
-      <p>Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
+      <p>Each player should take turns filling out and submitting the form below. Each turn should be 
+        done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. 
+        When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
 
       <p>Please follow the following format for your poetry submission:</p>
 
@@ -27,7 +36,7 @@ const Game = () => {
 
       <RecentSubmission />
 
-      <PlayerSubmissionForm />
+      <PlayerSubmissionForm fields={ FIELDS } sendSubmission={ getPlayerSubmission } /> 
 
       <FinalPoem />
 

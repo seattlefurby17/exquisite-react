@@ -4,11 +4,19 @@ import './PlayerSubmissionForm.css';
 
 const PlayerSubmissionForm = (props) => {
   const setInitialState = () => {
-    const initialStateValue = {};
-    props.fields.forEach((field) => {
-      if (field.key) initialStateValue[field.key] = '';
-    })
+    const initialStateValue = {}; //this is an object with an ability to set key like hash
+    for ( const field of props.fields ) {
+      if (field.key) {// if this is true
+        initialStateValue[field.key] = ''; //set key and value
+      }
+    }
     return initialStateValue;
+
+  //   props.fields.forEach((field) => {
+  //     if (field.key) initialStateValue[field.key] = '';
+  //   })
+  //   return initialStateValue;
+  // }
   }
 
   const [words, updateWords] = useState(setInitialState());
@@ -16,16 +24,16 @@ const PlayerSubmissionForm = (props) => {
   //event handlers
   const onInputChange = (event) => {
   
-  const newPlayerSubmission = {
-    ...words
-  };
+    const newPlayerSubmission = {
+      ...words 
+    };
 
-  const {fieldName, fieldValue} =  event.target
+    const { name, value } =  event.target
 
-  // This sets newformFields to the old value of the form state
-  // and then updates the one field that changed.
-  newPlayerSubmission[fieldName] = fieldValue; // updated the value using the hash key
-  updateWords(newPlayerSubmission);  // updated the form with new values
+    // This sets newformFields to the old value of the form state
+    // and then updates the one field that changed.
+    newPlayerSubmission[name] = value; // updated the value using the hash key
+    updateWords(newPlayerSubmission);  // updated the form with new values
   }
 
   //event listener
@@ -34,7 +42,7 @@ const PlayerSubmissionForm = (props) => {
     event.preventDefault();
     // print user data
     console.log(words);
-    // pass data to App
+    // pass data to Game
     props.sendSubmission(words)
     // clear the submission
     updateWords(setInitialState());
@@ -45,7 +53,7 @@ const PlayerSubmissionForm = (props) => {
     <div className="PlayerSubmissionForm">
       <h3>Player Submission Form for Player #{  }</h3>
 
-      <form className="PlayerSubmissionForm__form" >
+      <form className="PlayerSubmissionForm__form" onSubmit={onFormWordSubmission}>
 
         <div className="PlayerSubmissionForm__poem-inputs">
 
@@ -53,8 +61,10 @@ const PlayerSubmissionForm = (props) => {
             // Put your form inputs here... We've put in one below as an example
           }
           <input
-            placeholder="hm..."
-            type="text" 
+            placeholder="adjective"
+            type="text"
+            name='adj1'
+            value={ words.adj1 } 
             onChange={ onInputChange }
             />
         </div>
