@@ -13,11 +13,15 @@ const Game = () => {
     }
   }).join(' '); //this is a string
 
-  const [lines, setLines] = useState([]); //equivalent of constance variable 
+  const [poemLines, setPoemLines] = useState([]); //equivalent of a constant variable 
 
-  const getPlayerSubmission = (words) => {
-    
-    setLines()
+  const getPlayerSubmission = (newLine) => {
+    const { adj1, noun1, adv, verb, adj2, noun2 } = newLine; // destructuring
+    const newLineValue = 'The ' + adj1 + ' ' + noun1 + ' ' + adv + ' ' + verb + ' the ' + adj2 + ' ' + noun2 + '.'
+    console.log(newLineValue)
+    const newLines = [...poemLines];
+    newLines.push(newLineValue);
+    setPoemLines(newLines);
   }
 
   return (

@@ -12,11 +12,6 @@ const PlayerSubmissionForm = (props) => {
     }
     return initialStateValue;
 
-  //   props.fields.forEach((field) => {
-  //     if (field.key) initialStateValue[field.key] = '';
-  //   })
-  //   return initialStateValue;
-  // }
   }
 
   const [words, updateWords] = useState(setInitialState());
@@ -54,12 +49,8 @@ const PlayerSubmissionForm = (props) => {
       <h3>Player Submission Form for Player #{  }</h3>
 
       <form className="PlayerSubmissionForm__form" onSubmit={onFormWordSubmission}>
-
         <div className="PlayerSubmissionForm__poem-inputs">
-
-          {
-            // Put your form inputs here... We've put in one below as an example
-          }
+          <p>The</p>
           <input
             placeholder="adjective"
             type="text"
@@ -67,6 +58,43 @@ const PlayerSubmissionForm = (props) => {
             value={ words.adj1 } 
             onChange={ onInputChange }
             />
+          <input
+            placeholder="noun"
+            type="text"
+            name='noun1'
+            value={ words.noun1 } 
+            onChange={ onInputChange }
+            />
+          <input
+            placeholder="adverb"
+            type="text"
+            name='adv'
+            value={ words.adv } 
+            onChange={ onInputChange }
+            />
+          <input
+            placeholder="verb"
+            type="text"
+            name='verb'
+            value={ words.verb } 
+            onChange={ onInputChange }
+            />
+            <p>the</p>
+          <input
+            placeholder="adjective"
+            type="text"
+            name='adj2'
+            value={ words.adj2 } 
+            onChange={ onInputChange }
+            />
+          <input
+            placeholder="noun"
+            type="text"
+            name='noun2'
+            value={ words.noun2 } 
+            onChange={ onInputChange }
+            />
+            <p>.</p>
         </div>
 
         <div className="PlayerSubmissionForm__submit">
