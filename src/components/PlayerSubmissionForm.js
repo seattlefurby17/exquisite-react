@@ -39,8 +39,8 @@ const PlayerSubmissionForm = (props) => {
     console.log(words);
     // pass data to Game
     props.sendSubmission(words)
-    // clear the submission
-    updateWords(setInitialState());
+    // clear the submission, get ready for the next player
+    updateWords(setInitialState()); 
   };
 
 

@@ -15,7 +15,7 @@ const Game = () => {
 
   const [poemLines, setPoemLines] = useState([]); //equivalent of a constant variable 
 
-  const getPlayerSubmission = (newLine) => {
+  const getPlayerSubmission = (newLine) => { //update the state of poemLines
     const { adj1, noun1, adv, verb, adj2, noun2 } = newLine; // destructuring
     const newLineValue = 'The ' + adj1 + ' ' + noun1 + ' ' + adv + ' ' + verb + ' the ' + adj2 + ' ' + noun2 + '.'
     console.log(newLineValue)
@@ -23,6 +23,13 @@ const Game = () => {
     newLines.push(newLineValue);
     setPoemLines(newLines);
   }
+
+  const[isRevealed, setIsRevealed] = useState(false); //keep track if the player has submitted/not
+
+  const revealPoem = (event) => {
+    setIsRevealed(true);
+  }
+
 
   return (
     <div className="Game">
@@ -42,7 +49,7 @@ const Game = () => {
 
       <PlayerSubmissionForm fields={ FIELDS } sendSubmission={ getPlayerSubmission } /> 
 
-      <FinalPoem />
+      <FinalPoem revealPoem= { revealPoem } isRevealed={ isRevealed } submissions ={ poemLines }/>
 
     </div>
   );
