@@ -1,9 +1,9 @@
 .PlayerSubmissionForm {
-  line-height: 3rem;
+  line-height: 2rem;
 }
 
 .PlayerSubmissionForm__form {
-  margin: 2rem auto 3rem auto;
+  margin: 2rem auto 2rem auto;
 }
 
 .PlayerSubmissionForm__poem-inputs {

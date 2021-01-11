@@ -16,11 +16,13 @@ const FinalPoem = (props) => {
               className="FinalPoem__reveal-btn"
               onClick={ props.revealPoem }
             />
-            {(props.submissions).map((string, index) => (
-              <p key={index}>
-                {string}
-              </p>
-            ))}
+            <div>
+              {(props.submissions).map((string, index) => (
+                <p key={index}>
+                  {string}
+                </p>
+              ))}
+            </div>
           </div>
       </div>
     )}
