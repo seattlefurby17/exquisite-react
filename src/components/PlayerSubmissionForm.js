@@ -16,7 +16,8 @@ const PlayerSubmissionForm = (props) => {
 
   const [words, updateWords] = useState(setInitialState());
 
-  //event handlers
+  /*event handlers/listeners*/
+  //this is how the form is gathering and building up data for form
   const onInputChange = (event) => {
   
     const newPlayerSubmission = {
@@ -31,13 +32,13 @@ const PlayerSubmissionForm = (props) => {
     updateWords(newPlayerSubmission);  // updated the form with new values
   }
 
-  //event listener
+  //This is the finished data being passed to game
   const onFormWordSubmission = (event) => {
     // prevent the form from being submitted
     event.preventDefault();
     // print user data
     console.log(words);
-    // pass data to Game
+    // pass data to Game-callback function-your submission is ready
     props.sendSubmission(words)
     // clear the submission, get ready for the next player
     updateWords(setInitialState()); 
@@ -47,7 +48,7 @@ const PlayerSubmissionForm = (props) => {
     <div className="PlayerSubmissionForm">
       <h3>Player Submission Form for Player # { props.index }</h3>
 
-      <form className="PlayerSubmissionForm__form" onSubmit={onFormWordSubmission}>
+      <form className="PlayerSubmissionForm__form" onSubmit={onFormWordSubmission}> 
         <div className="PlayerSubmissionForm__poem-inputs">
           <p>The</p>
           <input
@@ -56,6 +57,7 @@ const PlayerSubmissionForm = (props) => {
             name='adj1'
             value={ words.adj1 } 
             onChange={ onInputChange }
+            className={ !words.adj1.length ? 'PlayerSubmissionFormt__input--invalid' : '' }
             />
           <input
             placeholder="noun"
@@ -63,6 +65,7 @@ const PlayerSubmissionForm = (props) => {
             name='noun1'
             value={ words.noun1 } 
             onChange={ onInputChange }
+            className={ !words.noun1.length ? 'PlayerSubmissionFormt__input--invalid' : '' }
             />
           <input
             placeholder="adverb"
@@ -70,6 +73,7 @@ const PlayerSubmissionForm = (props) => {
             name='adv'
             value={ words.adv } 
             onChange={ onInputChange }
+            className={ !words.adv.length ? 'PlayerSubmissionFormt__input--invalid' : '' }
             />
           <input
             placeholder="verb"
@@ -77,6 +81,7 @@ const PlayerSubmissionForm = (props) => {
             name='verb'
             value={ words.verb } 
             onChange={ onInputChange }
+            className={ !words.verb.length ? 'PlayerSubmissionFormt__input--invalid' : '' }
             />
             <p>the</p>
           <input
@@ -85,6 +90,7 @@ const PlayerSubmissionForm = (props) => {
             name='adj2'
             value={ words.adj2 } 
             onChange={ onInputChange }
+            className={ !words.adj2.length ? 'PlayerSubmissionFormt__input--invalid' : '' }
             />
           <input
             placeholder="noun"
@@ -92,6 +98,7 @@ const PlayerSubmissionForm = (props) => {
             name='noun2'
             value={ words.noun2 } 
             onChange={ onInputChange }
+            className={ !words.noun2.length ? 'PlayerSubmissionFormt__input--invalid' : '' }
             />
             <p>.</p>
         </div>

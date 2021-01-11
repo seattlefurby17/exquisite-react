@@ -43,18 +43,18 @@ const Game = () => {
       <p className="Game__format-example">
         { exampleFormat }
       </p>
+      
       {/* only show the latest submission/ last item in the array */}
-      <RecentSubmission submission={ poemLines[poemLines.length -1] || '' } />
-
-      <PlayerSubmissionForm 
-        fields={ FIELDS } sendSubmission={ getPlayerSubmission } index={ poemLines.length + 1} /> 
+      {!isRevealed && <RecentSubmission submission={ poemLines[poemLines.length -1] || '' } />}
+      {/* {isRevealed ? null : <RecentSubmission submission={ poemLines[poemLines.length -1] || '' } />} */}
+      {!isRevealed && <PlayerSubmissionForm 
+        fields={ FIELDS } sendSubmission={ getPlayerSubmission } index={ poemLines.length + 1} /> }
 
       <FinalPoem revealPoem={ revealPoem } isRevealed={ isRevealed } submissions={ poemLines } />
 
     </div>
   );
 }
-
 
 const FIELDS = [
   'The',
